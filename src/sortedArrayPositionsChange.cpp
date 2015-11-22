@@ -15,5 +15,42 @@ NOTES:
 
 void * sortedArrayPositionsChange(int *Arr, int len)
 {
-	return NULL;
+	int i, temp, temp1, temp2, count = 0;
+
+	if (len < 0 || Arr == NULL)
+		return NULL;
+	else
+	{
+		for (i = 0; i < len - 1; i++)
+		{
+			if (Arr[i] > Arr[i + 1])
+			{
+				if (count == 0)
+				{
+					temp1 = i;
+					count++;
+				}
+				else
+				{
+					temp2 = i + 1;
+					count++;
+				}
+			}
+		}
+		if (count > 2)
+			return NULL;
+		else if (count == 2)
+		{
+			temp = Arr[temp1];
+			Arr[temp1] = Arr[temp2];
+			Arr[temp2] = temp;
+		}
+		else if (count == 1) //condition if the unsorted elements Are adjacent
+		{
+			temp = Arr[temp1];
+			Arr[temp1] = Arr[temp1 + 1];
+			Arr[temp1 + 1] = temp;
+		}
+		return Arr;
+	}
 }
